@@ -82,7 +82,6 @@ int main(int argc, char *argv[])
         }
 
         nbyte = BUF_SIZE;
-    
         while(filesize > 0)
         {
             if(filesize < BUF_SIZE)
