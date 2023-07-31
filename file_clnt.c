@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     int nbyte;
     size_t filesize = 0, bufsize = 0;
 
-    pkt_t *recv_pkt = (pkt_t *) malloc(sizeof(pkt_t));//
+    pkt_t *recv_pkt = (pkt_t *) malloc(sizeof(pkt_t));
     memset(recv_pkt, 0, sizeof(pkt_t));//
 
     if(argc != 3) {
@@ -92,12 +92,12 @@ int main(int argc, char *argv[])
             }
         while(1)
         {
-            read(sock, recv_pkt, sizeof(pkt_t));//
+            read(sock, recv_pkt, sizeof(pkt_t));
 
             printf("\nsize: %zu\n", filesize);
             fwrite(recv_pkt->fileContent, 1, recv_pkt->size, file);
 
-            if(recv_pkt->size <BUF_SIZE)
+            if(recv_pkt->size < BUF_SIZE)
                 break;
         }
 
