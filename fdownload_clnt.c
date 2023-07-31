@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
             if(strcmp(buf, "end") == 0 || read_cnt <= 0)
                 break;
 
-            printf("%s\n", buf);
+            printf("%s bytes\n", buf);
         }
 
         printf("-------------------\n");
