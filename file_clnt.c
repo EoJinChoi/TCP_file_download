@@ -48,21 +48,18 @@ int main(int argc, char *argv[])
 
     while(1)
     {
+        // File list 출력
         printf("-----File list-----\n");
 
         while(1)
         {
-            // read_cnt = read(sock, buf, BUF_SIZE);
-            read_cnt = read(sock, recv_pkt, sizeof(pkt_t));//
+            read_cnt = read(sock, recv_pkt, sizeof(pkt_t));
             if(read_cnt == -1)
                 error_handling("read() error");
 
-            // if(strcmp(buf, "end") == 0 || read_cnt <= 0)
-            //     break;
             if(strcmp(recv_pkt->fileName, "end") == 0 || read_cnt <= 0)
                 break;
 
-            // printf("%s bytes\n", buf);
             printf("%s   ", recv_pkt->fileName);
             printf("%s bytes\n", recv_pkt->fileSize);
         }
@@ -87,6 +84,7 @@ int main(int argc, char *argv[])
 
         write(sock, file_name, sizeof(file_name));
 
+        // File write
         file = fopen(file_name, "wb");
             if(file == NULL) {
                 printf("Failed to create file.\n");
