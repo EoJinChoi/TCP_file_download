@@ -31,13 +31,10 @@ pkt_t *recv_pkt;
 int main(int argc, char *argv[])
 {
     int sock;
-    char buf[BUF_SIZE];
     char file_name[BUF_SIZE];
     int read_cnt, menu = 0;
     struct sockaddr_in serv_addr;
     FILE *file;
-    int nbyte;
-    size_t filesize = 0, bufsize = 0;
 
     recv_pkt = (pkt_t *) malloc(sizeof(pkt_t));
     memset(recv_pkt, 0, sizeof(pkt_t));
@@ -66,8 +63,6 @@ int main(int argc, char *argv[])
 
         while(1)
         {
-            int read_size = 0;
-
             while(1)
             {
                 read_cnt = recv(sock, recv_pkt, sizeof(pkt_t), MSG_PEEK);
@@ -81,11 +76,8 @@ int main(int argc, char *argv[])
 
             printf("%s   ", recv_pkt->fileName);
             printf("%s bytes\n", recv_pkt->fileSize);
-
-
-            
         }
-
+        
         printf("-------------------\n");
 
         // Menu 선택
