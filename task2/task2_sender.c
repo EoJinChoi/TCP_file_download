@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     socklen_t adr_sz;
     FILE *file;
     int seq = 0;
-    char file_name[BUF_SIZE] = "photo.jpeg";
+    char file_name[BUF_SIZE] = "abc.jpeg";
     int fpsize;
 
     data_pkt = (pkt_t *) malloc(sizeof(pkt_t));
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
     // File write
     while(nsize != fsize)
     {
-        printf("read\n");
+        // printf("read\n");
         ack = 0;
         data_pkt->seq = seq;
         printf("fread\n");
@@ -124,8 +124,11 @@ int main(int argc, char *argv[])
                     start = clock();
                 else
                     end = clock();
-                if(read == -1 || recv_pkt->ack == 0) // file이 잘 전송되지 않았을 때
+                if(read == -1) // file이 잘 전송되지 않았을 때
+                {
+                    printf("loss\n");
                     continue;
+                }
             }
             else
             {
@@ -138,8 +141,11 @@ int main(int argc, char *argv[])
                     start = clock();
                 else
                     end = clock();
-                if(read == -1 || recv_pkt->ack == 0) // file이 잘 전송되지 않았을 때
+                if(read == -1) // file이 잘 전송되지 않았을 때
+                {
+                    printf("loss\n");
                     continue;   
+                }
             }                              
             break;
         }
